@@ -1,4 +1,4 @@
-import { Client, Databases, ID, Query, Storage } from "appwrite";
+import { Client, Databases, ID, Permission, Query, Role, Storage } from "appwrite";
 import conf from '../conf/conf';
 
 export class Service {
@@ -11,7 +11,7 @@ export class Service {
 			.setEndpoint(conf.appwriteUrl)
 			.setProject(conf.appwriteProjectId);
 		this.databases = new Databases(this.client);
-		this.bucket - new Storage(this.client);
+		this.bucket = new Storage(this.client);
 	}
 
 	async createPost({ title, slug, content, featuredImage, status, userId }) {
@@ -19,13 +19,14 @@ export class Service {
 			return await this.databases.createDocument({
 				databaseId: conf.appwriteDatabaseId,
 				collectionId: conf.appwriteCollectionId,
-				documentId: slug,
+				documentId: ID.unique(),
 				data: {
 					title,
+					slug,
 					content,
 					featuredImage,
 					status,
-					userId
+					userId,
 				},
 			})
 		} catch (error) {
@@ -78,6 +79,22 @@ export class Service {
 		}
 	}
 
+	async getPostBySlug(slug) {
+		try {
+			const posts = await this.databases.listDocuments({
+				databaseId: conf.appwriteDatabaseId,
+				collectionId: conf.appwriteCollectionId,
+				queries: [Query.equal("slug", slug)],
+			})
+
+			return posts.documents[0]
+		} catch (error) {
+			console.log("Appwrite service :: getPostBySlug :: error", error)
+			return false
+		}
+	}
+
+
 	async getPosts(queries = [Query.equal("status", "active")]) {
 		try {
 			return await this.databases.listDocuments({
@@ -98,6 +115,9 @@ export class Service {
 				bucketId: conf.appwriteBucketId,
 				fileId: ID.unique(),
 				file,
+				permissions: [
+					Permission.read(Role.users()),
+				],
 			})
 		} catch (error) {
 			console.log("Appwrite service :: uploadFile :: error", error);
@@ -119,7 +139,7 @@ export class Service {
 	}
 
 	getFilePreview(fileId) {
-		return this.bucket.getFilePreview({
+		return this.bucket.getFileView({
 			bucketId: conf.appwriteBucketId,
 			fileId
 		});

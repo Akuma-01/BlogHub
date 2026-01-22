@@ -45,3 +45,39 @@
 .read-the-docs {
   color: #888;
 }
+
+
+
+/* EDITOR RTE */
+.tiptap-editor .ProseMirror {
+  min-height: 300px;
+  outline: none;
+  font-size: 14px;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.tiptap-editor .ProseMirror p {
+  margin: 10px 0;
+}
+
+.tiptap-editor .ProseMirror ul {
+  padding-left: 22px;
+  list-style: disc;
+}
+
+.tiptap-editor .ProseMirror ol {
+  padding-left: 22px;
+  list-style: decimal;
+}
+
+.tiptap-editor .ProseMirror h1 {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 12px 0;
+}
+
+.tiptap-editor .ProseMirror h2 {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 12px 0;
+}
