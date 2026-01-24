@@ -26,36 +26,42 @@ function Signup() {
 		}
 	}
 	return (
-		<div className="flex items-center justify-center">
-			<div className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10`}>
-				<div className="mb-2 flex justify-center">
-					<span className="inline-block w-full max-w-25">
-						<Logo width="100%" />
-					</span>
-				</div>
-				<h2 className="text-center text-2xl font-bold leading-tight">Sign up to create an account</h2>
-				<p className="mt-2 text-center text-base text-black/60">
-					Already have an account?&nbsp;
-					<Link
-						to="/login"
-						className="font-medium text-primary transition-all duration-200 hover:underline"
-					>
-						Sign In
-					</Link>
-				</p>
-				{error && <p className="text-red-600 mt-8 text-center">{error}</p>}
-				<form onSubmit={handleSubmit(create)}>
-					<div className="space-y-5">
+		<div className="flex items-center justify-center w-full h-[85vh] bg-slate-900 px-4">
+			<div className="mx-auto w-full max-w-md">
+				<div className="bg-slate-800 rounded-2xl p-6 shadow-2xl border border-slate-700">
+					<div className="mb-4 flex justify-center">
+						<span className="inline-block w-full max-w-37.5">
+							<Logo width="100%" />
+						</span>
+					</div>
+
+					<div className="text-center mb-6">
+						<h2 className="text-2xl font-bold text-white mb-1">
+							Create Account
+						</h2>
+						<p className="text-slate-400 text-sm">
+							Join our community today
+						</p>
+					</div>
+
+					{error && (
+						<div className="mb-4 p-3 bg-red-500/10 border border-red-500/50 rounded-lg">
+							<p className="text-red-400 text-sm text-center">{error}</p>
+						</div>
+					)}
+
+					<form onSubmit={handleSubmit(create)} className="space-y-5">
 						<Input
-							label="Full Name: "
+							label="Full Name"
+							autoFocus
 							placeholder="Enter your full name"
 							{...register("name", {
 								required: true,
 							})}
 						/>
 						<Input
-							label="Email: "
-							placeholder="Enter you email"
+							label="Email"
+							placeholder="Enter your email"
 							type="email"
 							{...register("email", {
 								required: true,
@@ -68,7 +74,7 @@ function Signup() {
 							})}
 						/>
 						<Input
-							label="Password: "
+							label="Password"
 							type="password"
 							placeholder="Enter your password"
 							{...register("password", {
@@ -78,8 +84,24 @@ function Signup() {
 						<Button type="submit" className="w-full">
 							Create Account
 						</Button>
+					</form>
+
+					<div className="mt-6 text-center">
+						<p className="text-slate-400 text-sm">
+							Already have an account?{" "}
+							<Link
+								to="/login"
+								className="font-semibold text-blue-400 hover:text-blue-300 transition-colors duration-200"
+							>
+								Sign In
+							</Link>
+						</p>
 					</div>
-				</form>
+				</div>
+
+				<p className="text-center text-slate-500 text-xs mt-6">
+					By creating an account, you agree to our Terms of Service and Privacy Policy
+				</p>
 			</div>
 		</div>
 	)

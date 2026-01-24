@@ -27,33 +27,36 @@ function Login() {
 	}
 
 	return (
-		<div className="flex items-center justify-center w-full">
-			<div className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10`}>
-				<div className="mb-2 flex justify-center">
-					<span className="inline-block w-full max-w-25">
-						<Logo width="100%" />
-					</span>
-				</div>
-				<h2 className="text-center text-2xl font-bold leading-tight">
-					Sign in to your account
-				</h2>
-				<p className="mt-2 text-center text-base text-black/60">
-					Don't have any account?&nbsp;
-					<Link
-						to="/signup"
-						className="font-medium text-primary transition-all duration-200 hover:underline"
-					>
-						Sign Up
-					</Link>
-				</p>
-				{error && <p className="text-red-600 mt-8 text-center">{error}</p>}
+		<div className="flex items-center justify-center w-full h-[83vh] bg-slate-900 px-4">
+			<div className="mx-auto w-full max-w-md">
+				<div className="bg-slate-800 rounded-2xl p-6 shadow-2xl border border-slate-700">
+					<div className="mb-4 flex justify-center">
+						<span className="inline-block w-full max-w-37.5">
+							<Logo width="100%" />
+						</span>
+					</div>
 
-				<form onSubmit={handleSubmit(login)} className="mt-8">
-					<div className="space-y-5">
+					<div className="text-center mb-6">
+						<h2 className="text-2xl font-bold text-white mb-1">
+							Welcome Back
+						</h2>
+						<p className="text-slate-400 text-sm">
+							Sign in to continue to your account
+						</p>
+					</div>
+
+					{error && (
+						<div className="mb-4 p-3 bg-red-500/10 border border-red-500/50 rounded-lg">
+							<p className="text-red-400 text-sm text-center">{error}</p>
+						</div>
+					)}
+
+					<form onSubmit={handleSubmit(login)} className="space-y-5">
 						<Input
-							label="Email: "
-							placeholder="Enter you email"
+							label="Email"
+							placeholder="Enter your email"
 							type="email"
+							autoFocus
 							{...register("email", {
 								required: true,
 								validate: {
@@ -64,7 +67,7 @@ function Login() {
 							})}
 						/>
 						<Input
-							label="Password: "
+							label="Password"
 							type="password"
 							placeholder="Enter your password"
 							{...register("password", {
@@ -74,8 +77,24 @@ function Login() {
 						<Button type="submit" className="w-full">
 							Sign in
 						</Button>
+					</form>
+
+					<div className="mt-6 text-center">
+						<p className="text-slate-400 text-sm">
+							Don't have an account?{" "}
+							<Link
+								to="/signup"
+								className="font-semibold text-blue-400 hover:text-blue-300 transition-colors duration-200"
+							>
+								Sign Up
+							</Link>
+						</p>
 					</div>
-				</form>
+				</div>
+
+				<p className="text-center text-slate-500 text-xs mt-6">
+					By signing in, you agree to our Terms of Service and Privacy Policy
+				</p>
 			</div>
 		</div>
 	)
