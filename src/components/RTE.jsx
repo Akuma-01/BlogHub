@@ -330,7 +330,7 @@ function TipTapEditor({ value, onChange }) {
 
         {/* Editor Area */}
         <div
-          className="p-6 min-h-[400px] outline-none focus:outline-none
+          className="p-6 min-h-100S outline-none focus:outline-none
             [&_.ProseMirror]:outline-none
             [&_.ProseMirror_h1]:text-3xl [&_.ProseMirror_h1]:font-bold [&_.ProseMirror_h1]:mt-4 [&_.ProseMirror_h1]:mb-2
             [&_.ProseMirror_h2]:text-2xl [&_.ProseMirror_h2]:font-bold [&_.ProseMirror_h2]:mt-3 [&_.ProseMirror_h2]:mb-2
