@@ -3,6 +3,10 @@
 BlogHub is a full-stack blogging web application built with **React** and **Appwrite**.  
 Users can sign up, log in, create posts using a rich text editor, upload featured images, and manage their posts.
 
+## 🌐 Live Demo
+
+🔗 https://blog-hub-ne21.vercel.app/
+
 ---
 
 ## 🚀 Features
